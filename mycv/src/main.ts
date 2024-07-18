@@ -5,12 +5,14 @@ const cookieSession = require('cookie-session');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cookieSession({
-    keys: ['asdfasfd']
-  }));
+  app.use(
+    cookieSession({
+      keys: ['asdfasfd'],
+    }),
+  );
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true // configuration object
+      whitelist: true, // configuration object
     }),
   );
   await app.listen(3000);
