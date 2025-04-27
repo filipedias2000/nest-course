@@ -8,24 +8,24 @@ import { User } from './user.entity';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private repo: Repository<User>,
+    private userRepository: Repository<User>,
   ) {}
 
   create(email: string, password: string) {
-    const user = this.repo.create({ email, password });
+    const user = this.userRepository.create({ email, password });
 
-    return this.repo.save(user);
+    return this.userRepository.save(user);
   }
 
   findOne(id: number) {
     if (!id) {
       return null;
     }
-    return this.repo.findOne({ where: { id } });
+    return this.userRepository.findOne({ where: { id } });
   }
 
   find(email: string) {
-    return this.repo.find({ where: { email } });
+    return this.userRepository.find({ where: { email } });
   }
 
   async update(id: number, attrs: Partial<User>) {
@@ -34,7 +34,7 @@ export class UsersService {
       throw new NotFoundException('user not found');
     }
     Object.assign(user, attrs);
-    return this.repo.save(user);
+    return this.userRepository.save(user);
   }
 
   async remove(id: number) {
@@ -43,6 +43,6 @@ export class UsersService {
       throw new NotFoundException('user not found');
     }
 
-    return this.repo.remove(user);
+    return this.userRepository.remove(user);
   }
 }
