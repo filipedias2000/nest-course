@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -7,7 +8,8 @@ import { AuthService } from './auth.service';
 import { User } from './user.entity';
 import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
 
-@Module({
+// Module {} Configuration Object
+@Module({ // forFeature [] lists entities
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
   providers: [
