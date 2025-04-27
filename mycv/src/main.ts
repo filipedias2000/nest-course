@@ -13,7 +13,7 @@ async function bootstrap() {
   );
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true, // configuration object
+      whitelist: true, // {} configuration object
     }),
   );
   await app.listen(3000);
